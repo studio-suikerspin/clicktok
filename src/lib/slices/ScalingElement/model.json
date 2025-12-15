@@ -1,0 +1,34 @@
+{
+  "type": "SharedSlice",
+  "id": "hero_with_media",
+  "name": "ScalingElement",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Standard hero with heading and media element (image or video) beneath.",
+      "version": "initial",
+      "imageUrl": "",
+      "docURL": "...",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+          }
+        },
+        "video_link": {
+          "type": "Text",
+          "config": {
+            "label": "Video link",
+            "placeholder": "Video cdn link"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -160,7 +160,7 @@ export type CaseDocument<Lang extends string = string> = prismic.PrismicDocument
 	Lang
 >;
 
-type HomepageDocumentDataSlicesSlice = HeroSlice;
+type HomepageDocumentDataSlicesSlice = HeroWithMediaSlice | HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -175,7 +175,7 @@ interface HomepageDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>; /**
+	slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
 	 * Meta Title field in *Homepage*
 	 *
 	 * - **Field Type**: Text
@@ -183,7 +183,7 @@ interface HomepageDocumentData {
 	 * - **API ID Path**: homepage.meta_title
 	 * - **Tab**: SEO & Metadata
 	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
+	 */;
 	meta_title: prismic.KeyTextField;
 
 	/**
@@ -307,6 +307,61 @@ type HeroSliceVariation = HeroSliceDefault;
  */
 export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
+/**
+ * Primary content in *ScalingElement → Default → Primary*
+ */
+export interface HeroWithMediaSliceDefaultPrimary {
+	/**
+	 * Title field in *ScalingElement → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero_with_media.default.primary.title
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	title: prismic.RichTextField;
+
+	/**
+	 * Video link field in *ScalingElement → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Video cdn link
+	 * - **API ID Path**: hero_with_media.default.primary.video_link
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	video_link: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for ScalingElement Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Standard hero with heading and media element (image or video) beneath.
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithMediaSliceDefault = prismic.SharedSliceVariation<
+	'default',
+	Simplify<HeroWithMediaSliceDefaultPrimary>,
+	never
+>;
+
+/**
+ * Slice variation for *ScalingElement*
+ */
+type HeroWithMediaSliceVariation = HeroWithMediaSliceDefault;
+
+/**
+ * ScalingElement Shared Slice
+ *
+ * - **API ID**: `hero_with_media`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HeroWithMediaSlice = prismic.SharedSlice<
+	'hero_with_media',
+	HeroWithMediaSliceVariation
+>;
+
 declare module '@prismicio/client' {
 	interface CreateClient {
 		(
@@ -339,7 +394,11 @@ declare module '@prismicio/client' {
 			HeroSliceDefaultPrimaryFeaturedCasesItem,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
-			HeroSliceDefault
+			HeroSliceDefault,
+			HeroWithMediaSlice,
+			HeroWithMediaSliceDefaultPrimary,
+			HeroWithMediaSliceVariation,
+			HeroWithMediaSliceDefault
 		};
 	}
 }

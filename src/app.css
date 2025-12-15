@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+:root {
+	--off-white: #fdfdfd;
+	--off-white_50: #fdfdfd50;
+	--accent-dark-purple: #1e193a;
+	--accent-light-purple: #b29cc6;
+	--accent-blue: #43bbc4;
+	--accent-pink: #c28ca1;
+	--accent-light-pink: #c28ca14d;
+	--black: #000000;
+	--white: #ffffff;
+
+	--body-font-size: 16px;
+	--section-spacing: 12.5rem;
+	--section-spacing--md: 8.75rem;
+	--section-spacing--sm: 6.25rem;
+
+	--header-z-index: 1000;
+}
+
+@utility container {
+	max-width: 2000px;
+	margin-inline: auto;
+	padding-inline: 0.75rem;
+}
+
+html,
+body {
+	font-family: 'Montserrat', sans-serif;
+	font-size: var(--body-font-size);
+	background: var(--black);
+}

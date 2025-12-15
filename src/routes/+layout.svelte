@@ -4,6 +4,8 @@
 	import { repositoryName } from '$lib/prismicio';
 
 	let { children } = $props();
+
+	import '../app.css';
 </script>
 
 <svelte:head>
@@ -18,6 +20,9 @@
 		<meta name="og:image" content={page.data.meta_image} />
 		<meta name="twitter:card" content="summary_large_image" />
 	{/if}
+
+	<link href="/fonts/syne/syne.css" rel="stylesheet" />
+	<link href="/fonts/montserrat/montserrat.css" rel="stylesheet" />
 </svelte:head>
 <main>
 	{@render children()}

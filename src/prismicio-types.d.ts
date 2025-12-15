@@ -57,7 +57,110 @@ type ContentRelationshipFieldWithData<
 	>;
 }[Exclude<TCustomType[number], string>['id']];
 
-type HomepageDocumentDataSlicesSlice = never;
+/**
+ * Item in *Case → Images*
+ */
+export interface CaseDocumentDataImagesItem {
+	/**
+	 * Image field in *Case → Images*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.images[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Content for Case documents
+ */
+interface CaseDocumentData {
+	/**
+	 * Title field in *Case*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Case title
+	 * - **API ID Path**: case.title
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Summary field in *Case*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Case summary, this should be about 2, maybe 3 sentences
+	 * - **API ID Path**: case.summary
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	summary: prismic.KeyTextField;
+
+	/**
+	 * Featured image field in *Case*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.featured_image
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	featured_image: prismic.ImageField<never>;
+
+	/**
+	 * Description field in *Case*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.description
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	description: prismic.RichTextField;
+
+	/**
+	 * Images field in *Case*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.images[]
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	images: prismic.GroupField<Simplify<CaseDocumentDataImagesItem>>;
+
+	/**
+	 * Video URLs field in *Case*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.videos
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	videos: prismic.Repeatable<
+		prismic.LinkField<string, string, unknown, prismic.FieldState, 'featured' | 'normal'>
+	>;
+}
+
+/**
+ * Case document from Prismic
+ *
+ * - **API ID**: `case`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CaseDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
+	Simplify<CaseDocumentData>,
+	'case',
+	Lang
+>;
+
+type HomepageDocumentDataSlicesSlice = HeroSlice;
 
 /**
  * Content for Homepage documents
@@ -72,7 +175,7 @@ interface HomepageDocumentData {
 	 * - **Tab**: Main
 	 * - **Documentation**: https://prismic.io/docs/slices
 	 */
-	slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice> /**
+	slices: prismic.SliceZone<HomepageDocumentDataSlicesSlice>; /**
 	 * Meta Title field in *Homepage*
 	 *
 	 * - **Field Type**: Text
@@ -80,7 +183,7 @@ interface HomepageDocumentData {
 	 * - **API ID Path**: homepage.meta_title
 	 * - **Tab**: SEO & Metadata
 	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */;
+	 */
 	meta_title: prismic.KeyTextField;
 
 	/**
@@ -121,124 +224,88 @@ export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocu
 	Lang
 >;
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+export type AllDocumentTypes = CaseDocument | HomepageDocument;
 
 /**
- * Content for Page documents
+ * Item in *Hero → Default → Primary → Featured cases*
  */
-interface PageDocumentData {
+export interface HeroSliceDefaultPrimaryFeaturedCasesItem {
 	/**
-	 * Title field in *Page*
+	 * Case field in *Hero → Default → Primary → Featured cases*
 	 *
-	 * - **Field Type**: Rich Text
+	 * - **Field Type**: Content Relationship
 	 * - **Placeholder**: *None*
-	 * - **API ID Path**: page.title
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 * - **API ID Path**: hero.default.primary.featured_cases[].case
+	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
-	title: prismic.RichTextField;
-
-	/**
-	 * Slice Zone field in *Page*
-	 *
-	 * - **Field Type**: Slice Zone
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: page.slices[]
-	 * - **Tab**: Main
-	 * - **Documentation**: https://prismic.io/docs/slices
-	 */
-	slices: prismic.SliceZone<PageDocumentDataSlicesSlice> /**
-	 * Meta Title field in *Page*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A title of the page used for social media and search engines
-	 * - **API ID Path**: page.meta_title
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */;
-	meta_title: prismic.KeyTextField;
-
-	/**
-	 * Meta Description field in *Page*
-	 *
-	 * - **Field Type**: Text
-	 * - **Placeholder**: A brief summary of the page
-	 * - **API ID Path**: page.meta_description
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/fields/text
-	 */
-	meta_description: prismic.KeyTextField;
-
-	/**
-	 * Meta Image field in *Page*
-	 *
-	 * - **Field Type**: Image
-	 * - **Placeholder**: *None*
-	 * - **API ID Path**: page.meta_image
-	 * - **Tab**: SEO & Metadata
-	 * - **Documentation**: https://prismic.io/docs/fields/image
-	 */
-	meta_image: prismic.ImageField<never>;
+	case: ContentRelationshipFieldWithData<
+		[{ id: 'case'; fields: ['title', 'featured_image', 'videos'] }]
+	>;
 }
 
 /**
- * Page document from Prismic
- *
- * - **API ID**: `page`
- * - **Repeatable**: `true`
- * - **Documentation**: https://prismic.io/docs/content-modeling
- *
- * @typeParam Lang - Language API ID of the document.
+ * Primary content in *Hero → Default → Primary*
  */
-export type PageDocument<Lang extends string = string> = prismic.PrismicDocumentWithUID<
-	Simplify<PageDocumentData>,
-	'page',
-	Lang
->;
-
-export type AllDocumentTypes = HomepageDocument | PageDocument;
-
-/**
- * Primary content in *RichText → Default → Primary*
- */
-export interface RichTextSliceDefaultPrimary {
+export interface HeroSliceDefaultPrimary {
 	/**
-	 * Content field in *RichText → Default → Primary*
+	 * Headline field in *Hero → Default → Primary*
 	 *
 	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Lorem ipsum...
-	 * - **API ID Path**: rich_text.default.primary.content
+	 * - **Placeholder**: Full service tiktok agency
+	 * - **API ID Path**: hero.default.primary.headline
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
-	content: prismic.RichTextField;
+	headline: prismic.RichTextField;
+
+	/**
+	 * CTA field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.cta
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	cta: prismic.Repeatable<
+		prismic.LinkField<string, string, unknown, prismic.FieldState, 'white' | 'blue' | 'outline'>
+	>;
+
+	/**
+	 * Featured cases field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.featured_cases[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	featured_cases: prismic.GroupField<Simplify<HeroSliceDefaultPrimaryFeaturedCasesItem>>;
 }
 
 /**
- * Default variation for RichText Slice
+ * Default variation for Hero Slice
  *
  * - **API ID**: `default`
- * - **Description**: RichText
+ * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type RichTextSliceDefault = prismic.SharedSliceVariation<
+export type HeroSliceDefault = prismic.SharedSliceVariation<
 	'default',
-	Simplify<RichTextSliceDefaultPrimary>,
+	Simplify<HeroSliceDefaultPrimary>,
 	never
 >;
 
 /**
- * Slice variation for *RichText*
+ * Slice variation for *Hero*
  */
-type RichTextSliceVariation = RichTextSliceDefault;
+type HeroSliceVariation = HeroSliceDefault;
 
 /**
- * RichText Shared Slice
+ * Hero Shared Slice
  *
- * - **API ID**: `rich_text`
- * - **Description**: RichText
+ * - **API ID**: `hero`
+ * - **Description**: Hero
  * - **Documentation**: https://prismic.io/docs/slices
  */
-export type RichTextSlice = prismic.SharedSlice<'rich_text', RichTextSliceVariation>;
+export type HeroSlice = prismic.SharedSlice<'hero', HeroSliceVariation>;
 
 declare module '@prismicio/client' {
 	interface CreateClient {
@@ -261,17 +328,18 @@ declare module '@prismicio/client' {
 
 	namespace Content {
 		export type {
+			CaseDocument,
+			CaseDocumentData,
+			CaseDocumentDataImagesItem,
 			HomepageDocument,
 			HomepageDocumentData,
 			HomepageDocumentDataSlicesSlice,
-			PageDocument,
-			PageDocumentData,
-			PageDocumentDataSlicesSlice,
 			AllDocumentTypes,
-			RichTextSlice,
-			RichTextSliceDefaultPrimary,
-			RichTextSliceVariation,
-			RichTextSliceDefault
+			HeroSlice,
+			HeroSliceDefaultPrimaryFeaturedCasesItem,
+			HeroSliceDefaultPrimary,
+			HeroSliceVariation,
+			HeroSliceDefault
 		};
 	}
 }

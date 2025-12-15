@@ -28,7 +28,7 @@
 	</div>
 </section>
 
-<section class="h-[100vh]"></section>
+<!-- <section class="h-[100vh]"></section> -->
 
 <style lang="scss">
 	.hero {

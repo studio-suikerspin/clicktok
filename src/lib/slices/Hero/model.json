@@ -18,7 +18,7 @@
             "label": "Headline",
             "placeholder": "Full service tiktok agency",
             "allowTargetBlank": false,
-            "single": "heading1,strong"
+            "single": "heading1,strong,em,embed,preformatted"
           }
         },
         "cta": {

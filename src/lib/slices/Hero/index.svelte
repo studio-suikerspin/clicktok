@@ -55,7 +55,7 @@
 			font-weight: 800;
 			line-height: 100%;
 			text-align: center;
-			text-transform: uppercase;
+			// text-transform: uppercase;
 
 			:global strong {
 				color: var(--accent-blue);

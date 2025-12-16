@@ -6,17 +6,13 @@
 	import { gsap, ScrollTrigger, Flip } from '$lib/gsap';
 	import { onMount } from 'svelte';
 	
-	
-
-
 	type Props = SliceComponentProps<Content.HeroWithMediaSlice>;
-
 
 	const { slice }: Props = $props();
 
 	gsap.registerPlugin(ScrollTrigger, Flip);
 
-function initFlipOnScroll() {
+	function initFlipOnScroll() {
   let wrapperElements = document.querySelectorAll("[data-flip-element='wrapper']");
   let targetEl = document.querySelector("[data-flip-element='target']");
 
@@ -78,9 +74,12 @@ onMount(() => {
 </script>
 
 <section class="scaling-element" data-slice-type={slice.slice_type} data-slice-variation={slice.variation}>
+	
+	<!-- <div class="background__gradient">
+		<img src="/gradient-background.webp" alt="" aria-hidden="true" />
+	</div> -->
+
   <section class="scaling-element-header">
-		<!-- <span class="scaling-element-header__eyebrow">[ Resource ]</span> -->
-    <!-- <h1 class="scaling-element-header__h1">Scaling element on scroll with Flip</h1> -->
 		<div class="scaling-element-header__title">
 			<PrismicRichText field={slice.primary.title} />
 		</div>
@@ -98,7 +97,6 @@ onMount(() => {
       <div class="scaling-video__before"></div>
       <div data-flip-element="wrapper" class="scaling-video__wrapper"></div>
     </div>
-    <h1 class="scaling-element-header__h1">And you can have more content here ...</h1>
   </section>
 </section>
 
@@ -148,13 +146,13 @@ onMount(() => {
 }
 
 .scaling-element__big-box {
-  border-radius: 1em;
+  border-radius: 1.5rem;
   width: 100%;
   position: relative;
 }
 
 .scaling-element__small-box {
-  border-radius: 1em;
+  border-radius: 1.5rem;
   width: 20em;
   position: relative;
 }
@@ -169,7 +167,6 @@ onMount(() => {
 
 .scaling-video {
   will-change: transform;
-  background-color: #d2800f;
   border-radius: 1em;
   justify-content: center;
   align-items: center;
@@ -198,25 +195,12 @@ onMount(() => {
   border-radius: inherit;
 }
 
-.scaling-video__svg {
-  color: #fff;
-  mix-blend-mode: overlay;
-  width: 6.25em;
-  position: absolute;
-}
 
 @media screen and (max-width: 767px) {
-  .scaling-element-header__h1 {
-    font-size: 13.5vw;
-  }
-
   .scaling-element__small-box {
     width: 15em;
   }
 
-  .scaling-video__svg {
-    width: 5em;
-  }
 }
 
 

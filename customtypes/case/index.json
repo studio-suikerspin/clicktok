@@ -12,6 +12,14 @@
 					"label": "UID"
 				}
 			},
+			"brand_logo": {
+				"type": "Image",
+				"config": {
+					"label": "Brand logo",
+					"constraint": {},
+					"thumbnails": []
+				}
+			},
 			"title": {
 				"type": "Text",
 				"config": {

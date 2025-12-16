@@ -9,7 +9,7 @@
 					{
 						"type": "heading1",
 						"content": {
-							"text": "Chart"
+							"text": "Close"
 						}
 					}
 				]
@@ -23,8 +23,8 @@
 							[
 								"case",
 								{
-									"key": "3ae0be6b-82d5-42f6-84a0-e64932efa397",
 									"__TYPE__": "LinkContent",
+									"key": "6624b230-f316-4ac5-a038-247e0a97caad",
 									"value": {
 										"__TYPE__": "DocumentLink",
 										"id": "mock_document_id"
@@ -40,13 +40,29 @@
 				"type": "Link",
 				"value": [
 					{
+						"key": "31372264-3f20-428e-ab71-176d51a17b21",
 						"__TYPE__": "LinkContent",
-						"key": "0558fb7b-82b3-4292-9074-b6f6beb73e65",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "https://slicemachine.dev",
-							"text": "correct",
+							"text": "slave",
 							"variant": "blue"
+						}
+					}
+				]
+			},
+			"subheadline": {
+				"__TYPE__": "FieldContent",
+				"value": "men",
+				"type": "Text"
+			},
+			"summary": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Veniam elit anim duis est incididunt enim dolor esse ea ea culpa do. Irure laborum commodo dolore est do nulla."
 						}
 					}
 				]

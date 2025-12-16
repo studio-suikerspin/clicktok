@@ -77,6 +77,17 @@ export interface CaseDocumentDataImagesItem {
  */
 interface CaseDocumentData {
 	/**
+	 * Brand logo field in *Case*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: case.brand_logo
+	 * - **Tab**: Main
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	brand_logo: prismic.ImageField<never>;
+
+	/**
 	 * Title field in *Case*
 	 *
 	 * - **Field Type**: Text
@@ -239,7 +250,7 @@ export interface HeroSliceDefaultPrimaryFeaturedCasesItem {
 	 * - **Documentation**: https://prismic.io/docs/fields/content-relationship
 	 */
 	case: ContentRelationshipFieldWithData<
-		[{ id: 'case'; fields: ['title', 'featured_image', 'videos'] }]
+		[{ id: 'case'; fields: ['title', 'featured_image', 'videos', 'brand_logo'] }]
 	>;
 }
 
@@ -248,14 +259,34 @@ export interface HeroSliceDefaultPrimaryFeaturedCasesItem {
  */
 export interface HeroSliceDefaultPrimary {
 	/**
+	 * Subheadline field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Full Service
+	 * - **API ID Path**: hero.default.primary.subheadline
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	subheadline: prismic.KeyTextField;
+
+	/**
 	 * Headline field in *Hero → Default → Primary*
 	 *
 	 * - **Field Type**: Rich Text
-	 * - **Placeholder**: Full service tiktok agency
+	 * - **Placeholder**: TikTok Agency
 	 * - **API ID Path**: hero.default.primary.headline
 	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
 	 */
 	headline: prismic.RichTextField;
+
+	/**
+	 * Summary field in *Hero → Default → Primary*
+	 *
+	 * - **Field Type**: Rich Text
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: hero.default.primary.summary
+	 * - **Documentation**: https://prismic.io/docs/fields/rich-text
+	 */
+	summary: prismic.RichTextField;
 
 	/**
 	 * CTA field in *Hero → Default → Primary*
@@ -266,7 +297,13 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/link
 	 */
 	cta: prismic.Repeatable<
-		prismic.LinkField<string, string, unknown, prismic.FieldState, 'white' | 'blue' | 'outline'>
+		prismic.LinkField<
+			string,
+			string,
+			unknown,
+			prismic.FieldState,
+			'white' | 'blue' | 'outline' | 'pink'
+		>
 	>;
 
 	/**

@@ -12,13 +12,29 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "subheadline": {
+          "type": "Text",
+          "config": {
+            "label": "Subheadline",
+            "placeholder": "Full Service"
+          }
+        },
         "headline": {
           "type": "StructuredText",
           "config": {
             "label": "Headline",
-            "placeholder": "Full service tiktok agency",
+            "placeholder": "TikTok Agency",
             "allowTargetBlank": false,
             "single": "heading1,strong"
+          }
+        },
+        "summary": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Summary",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "paragraph,strong,em,hyperlink"
           }
         },
         "cta": {
@@ -33,7 +49,8 @@
             "variants": [
               "white",
               "blue",
-              "outline"
+              "outline",
+              "pink"
             ]
           }
         },
@@ -55,7 +72,8 @@
                       "fields": [
                         "title",
                         "featured_image",
-                        "videos"
+                        "videos",
+                        "brand_logo"
                       ]
                     }
                   ]
